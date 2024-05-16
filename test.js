@@ -53,63 +53,63 @@ const upload = multer({ storage: storage })
 app.get('/', (req, res) => {
     res.send('Hello samad world')
 })
-app.post('/api/upload', upload.single('samad'), async (req, res) => {
+app.post('/api/upload', upload.single('tech-Datacenter'), async (req, res) => {
     // console.log(req.body, "==>> yeh hai body")
     console.log(req.file, "==>> yeh hai file")
 
 
-    // const result = await new Promise((resolve, reject) => {
-    //     const bufferStream = new stream.PassThrough();
-    //     bufferStream.end(req.file.buffer);
+    const result = await new Promise((resolve, reject) => {
+        const bufferStream = new stream.PassThrough();
+        bufferStream.end(req.file.buffer);
 
-    //     const streamm = cloudinary.uploader.upload_stream(
-    //         {
-    //             resource_type: 'auto',
-    //             folder: 'haroonPicture',
-    //         },
-    //         (error, result) => {
-    //             if (error) reject(error);
-    //             else resolve(result);
-    //         }
-    //     );
+        const streamm = cloudinary.uploader.upload_stream(
+            {
+                resource_type: 'auto',
+                folder: 'uploadfiles',
+            },
+            (error, result) => {
+                if (error) reject(error);
+                else resolve(result);
+            }
+        );
 
-    //     // Pipe the bufferStream into the cloudinary upload stream
-    //     bufferStream.pipe(streamm);
-    // });
+        // Pipe the bufferStream into the cloudinary upload stream
+        bufferStream.pipe(streamm);
+    });
 
-    // console.log(result, "==>> result")
+    console.log(result, "==>> result")
 
-    // res.send(result)
+    res.send(result)
 
 
 
 
     //cloudinary ya kisi bhi cloud per file transfer
 
-    // cloudinary.uploader.upload(req.file.path,
-    //     { public_id: req.file.filename },
-    //     function (error, result) {
-    //         console.log(result, "===>>> result")
-    //         console.log(error, "===>> error")
-    //         fs.unlink(req.file.path,
-    //             (err => {
-    //                 if (err) console.log(err);
-    //                 else {
-    //                     console.log("\nDeleted file: example_file.txt");
+    cloudinary.uploader.upload(req.file.path,
+        { public_id: req.file.filename },
+        function (error, result) {
+            console.log(result, "===>>> result")
+            console.log(error, "===>> error")
+            fs.unlink(req.file.path,
+                (err => {
+                    if (err) console.log(err);
+                    else {
+                        console.log("\nDeleted file: example_file.txt");
 
-    //                     // Get the files in current directory
-    //                     // after deletion
-    //                     // getFilesInDirectory();
-    //                 }
-    //             }));
+                        // Get the files in current directory
+                        // after deletion
+                        // getFilesInDirectory();
+                    }
+                }));
 
-    //         res.send(result)
-        // });
+            res.send(result)
+        });
 
 
 
-    //file delete from server
-    // res.send('main hun post ki api')
+    // file delete from server
+    res.send('main hun post ki api')
 })
 // app.get('/', (req, res) => {
 //     res.send('Hello About')
