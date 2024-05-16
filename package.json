@@ -2,12 +2,12 @@
   "name": "backend-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "test.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "start:dev": "nodemon index.js",
+    "start": "node test.js",
+    "start:dev": "nodemon test.js",
     "start:test": "nodemon test.js"
   },
   "keywords": [],

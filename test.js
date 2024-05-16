@@ -3,6 +3,15 @@ import multer from 'multer'
 import { v2 as cloudinary } from 'cloudinary';
 import stream from 'stream'
 import fs from 'fs'
+import dotenv from 'dotenv'
+
+const app = express();
+
+dotenv.config();
+
+app.use(express.json())
+
+
 
 const PORT = process.env.PORT || 5000;
 const cloud_name = process.env.cloud_name;
@@ -14,6 +23,13 @@ cloudinary.config({
     api_key: api_key,
     api_secret: api_secret
 });
+
+
+
+
+
+
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -32,14 +48,12 @@ const upload = multer({ storage: storage })
 
 // const upload = multer({ dest: './public/data/uploads/' })
 
-const app = express()
 
-app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.send('Hello samad world')
 })
-app.post('/', upload.single('profile'), async (req, res) => {
+app.post('/api/upload', upload.single('samad'), async (req, res) => {
     // console.log(req.body, "==>> yeh hai body")
     console.log(req.file, "==>> yeh hai file")
 
@@ -72,34 +86,34 @@ app.post('/', upload.single('profile'), async (req, res) => {
 
     //cloudinary ya kisi bhi cloud per file transfer
 
-    cloudinary.uploader.upload(req.file.path,
-        { public_id: req.file.filename },
-        function (error, result) {
-            console.log(result, "===>>> result")
-            console.log(error, "===>> error")
-            fs.unlink(req.file.path,
-                (err => {
-                    if (err) console.log(err);
-                    else {
-                        console.log("\nDeleted file: example_file.txt");
+    // cloudinary.uploader.upload(req.file.path,
+    //     { public_id: req.file.filename },
+    //     function (error, result) {
+    //         console.log(result, "===>>> result")
+    //         console.log(error, "===>> error")
+    //         fs.unlink(req.file.path,
+    //             (err => {
+    //                 if (err) console.log(err);
+    //                 else {
+    //                     console.log("\nDeleted file: example_file.txt");
 
-                        // Get the files in current directory
-                        // after deletion
-                        // getFilesInDirectory();
-                    }
-                }));
+    //                     // Get the files in current directory
+    //                     // after deletion
+    //                     // getFilesInDirectory();
+    //                 }
+    //             }));
 
-            res.send(result)
-        });
+    //         res.send(result)
+        // });
 
 
 
     //file delete from server
     // res.send('main hun post ki api')
 })
-app.get('/about', (req, res) => {
-    res.send('Hello About')
-})
+// app.get('/', (req, res) => {
+//     res.send('Hello About')
+// })
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
