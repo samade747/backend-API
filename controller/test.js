@@ -4,11 +4,15 @@ import { v2 as cloudinary } from 'cloudinary';
 import stream from 'stream'
 import fs from 'fs'
 
+const PORT = process.env.PORT || 5000;
+const cloud_name = process.env.cloud_name;
+const api_key = process.env.api_key;
+const api_secret = process.env.api_secret;
 
 cloudinary.config({
-    cloud_name: 'dsyxipnmh',
-    api_key: '162236837726177',
-    api_secret: '3dYb2weXz9LCZSRMghuCHfCQ-yc'
+    cloud_name: cloud_name,
+    api_key: api_key,
+    api_secret: api_secret
 });
 
 const storage = multer.diskStorage({
@@ -97,6 +101,6 @@ app.get('/about', (req, res) => {
     res.send('Hello About')
 })
 
-app.listen('3000', () => {
-    console.log('Haan bhaee server chal raha hai 3000')
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
 })
