@@ -52,7 +52,7 @@ app.post('/api/upload', upload.single('mern1'), async (req, res) => {
             const streamm = cloudinary.uploader.upload_stream(
                 {
                     resource_type: 'auto',
-                    folder: 'uploadfiles',
+                    folder: 'my-uploads',
                 },
                 (error, result) => {
                     if (error) reject(error);
