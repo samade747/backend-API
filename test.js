@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
     res.send('Hello samad world');
 });
 
-app.post('/api/upload', upload.single('mern1'), async (req, res) => {
+app.post('/api/upload', upload.single('a3'), async (req, res) => {
     try {
         // Check if req.file exists and if it has a non-empty buffer
         if (!req.file || req.file.size === 0) {
@@ -52,7 +52,7 @@ app.post('/api/upload', upload.single('mern1'), async (req, res) => {
             const streamm = cloudinary.uploader.upload_stream(
                 {
                     resource_type: 'auto',
-                    folder: 'my-uploads',
+                    folder: 'uploadfiles',
                 },
                 (error, result) => {
                     if (error) reject(error);
