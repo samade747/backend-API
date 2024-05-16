@@ -2,13 +2,13 @@
   "name": "backend-api",
   "version": "1.0.0",
   "description": "",
-  "main": "testing.js",
+  "main": "test.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node testing.js",
-    "start:dev": "nodemon testing.js",
-    "start:test": "nodemon testing.js"
+    "start:dev": "nodemon test.js",
+    "start:test": "nodemon test.js"
   },
   "keywords": [],
   "author": "",
